@@ -1,0 +1,1312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>node-red-contrib-browser-utils/camera.html at master · ibm-early-programs/node-red-contrib-browser-utils</title>
+  <meta name="Description" content="node-red-contrib-browser-utils - Browser utilities for node-red">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1561.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Menlo; color: #6f42c1; -webkit-text-stroke: #6f42c1}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; line-height: 14.0px; font: 12.0px Menlo; color: #1b1f23; color: rgba(27, 31, 35, 0.3); -webkit-text-stroke: rgba(27, 31, 35, 0.3)}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Menlo; color: #24292e; -webkit-text-stroke: #24292e}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Menlo; color: #22863a; -webkit-text-stroke: #22863a}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Menlo; color: #032f62; -webkit-text-stroke: #032f62}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Menlo; color: #005cc5; -webkit-text-stroke: #005cc5}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Menlo; color: #24292e; -webkit-text-stroke: #24292e; min-height: 14.0px}
+    span.s1 {font-kerning: none; color: #24292e; -webkit-text-stroke: 0px #24292e}
+    span.s2 {font-kerning: none; color: #22863a; -webkit-text-stroke: 0px #22863a}
+    span.s3 {font-kerning: none}
+    span.s4 {font-kerning: none; color: #032f62; -webkit-text-stroke: 0px #032f62}
+    span.s5 {font-kerning: none; color: #6f42c1; -webkit-text-stroke: 0px #6f42c1}
+    span.s6 {font-kerning: none; color: #d73a49; -webkit-text-stroke: 0px #d73a49}
+    span.s7 {font-kerning: none; color: #005cc5; -webkit-text-stroke: 0px #005cc5}
+    table.t1 {background-color: #ffffff; border-collapse: collapse}
+    td.td1 {width: 315.0px; padding: 0.0px 10.0px 0.0px 10.0px}
+    td.td2 {width: 315.0px; min-width: 50.0px; padding: 0.0px 10.0px 0.0px 10.0px}
+    td.td3 {width: 429.0px; padding: 0.0px 10.0px 0.0px 10.0px}
+    td.td4 {width: 429.0px; background-color: #fffbdd; padding: 0.0px 10.0px 0.0px 10.0px}
+  </style>
+</head>
+<body>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p1"><span class="s1">&lt;</span><span class="s2">script</span><span class="s1"> </span><span class="s3">type</span><span class="s1">=</span><span class="s4">"text/x-red"</span><span class="s1"> </span><span class="s3">data-template-name</span><span class="s1">=</span><span class="s4">"camera"</span><span class="s1">&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">    </span>&lt;div class="form-row"&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span>&lt;label for="node-input-name"&gt;&lt;i class="fa fa-tag"&gt;&lt;/i&gt; Name&lt;/label&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span>&lt;input type="text" id="node-input-name" placeholder="Camera"&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p4"><span class="s1">&lt;/</span><span class="s3">script</span><span class="s1">&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p5"><span class="s1">&lt;</span><span class="s2">script</span><span class="s1"> </span><span class="s5">type</span><span class="s1">=</span><span class="s3">"text/x-red"</span><span class="s1"> </span><span class="s5">data-help-name</span><span class="s1">=</span><span class="s3">"camera"</span><span class="s1">&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">    </span>&lt;p&gt;A simple camera node to capture the current image from the device webcam&lt;/p&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">    </span>&lt;p&gt;Usage:&lt;/p&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">    </span>&lt;ol&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span>&lt;li&gt;Add the camera node to your flow&lt;/li&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span>&lt;li&gt;Click the &lt;code&gt;button&lt;/code&gt; capture an image from the webcam&lt;/li&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td4">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">    </span>&lt;/ol&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">    </span>&lt;p&gt;The &lt;code&gt;png&lt;/code&gt; image is sent as the &lt;code&gt;msg.payload&lt;/code&gt; object&lt;/p&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">    </span>&lt;p&gt;Supported browsers&lt;/p&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">    </span>&lt;ul&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">      </span>&lt;li&gt;Chrome&lt;/li&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">      </span>&lt;li&gt;Firefox&lt;/li&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p4"><span class="s1">&lt;/</span><span class="s3">script</span><span class="s1">&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p5"><span class="s1">&lt;</span><span class="s2">script</span><span class="s1"> </span><span class="s5">type</span><span class="s1">=</span><span class="s3">"text/javascript"</span><span class="s1">&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">    </span>(</span><span class="s6">function</span><span class="s3">() {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span></span><span class="s7">navigator</span><span class="s3">.getUserMedia </span><span class="s6">=</span><span class="s3"> </span><span class="s7">navigator</span><span class="s3">.getUserMedia </span><span class="s6">||</span><span class="s3"> </span><span class="s7">navigator</span><span class="s3">.webkitGetUserMedia </span><span class="s6">||</span><span class="s3"> </span><span class="s7">navigator</span><span class="s3">.mozGetUserMedia</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p6"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">window</span><span class="s1">.video </span><span class="s6">=</span><span class="s1"> </span><span class="s3">document</span><span class="s1">.</span><span class="s3">createElement</span><span class="s1">(</span><span class="s4">'video'</span><span class="s1">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p6"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">window</span><span class="s1">.canvas </span><span class="s6">=</span><span class="s1"> </span><span class="s3">document</span><span class="s1">.</span><span class="s3">createElement</span><span class="s1">(</span><span class="s4">'canvas'</span><span class="s1">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span>canvas.</span><span class="s7">style</span><span class="s3">.</span><span class="s7">display</span><span class="s3"> </span><span class="s6">=</span><span class="s3"> </span><span class="s4">'none'</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span>canvas.</span><span class="s7">style</span><span class="s3">.</span><span class="s7">display</span><span class="s3"> </span><span class="s6">=</span><span class="s3"> </span><span class="s4">'none'</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span></span><span class="s6">var</span><span class="s3"> id</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span></span><span class="s6">function</span><span class="s3"> </span><span class="s5">onCanPlay</span><span class="s3">(evt) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>video.</span><span class="s7">removeEventListener</span><span class="s3">(</span><span class="s4">'canplay'</span><span class="s3">, onCanPlay, </span><span class="s7">false</span><span class="s3">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span></span><span class="s6">var</span><span class="s3"> width <span class="Apple-converted-space">  </span></span><span class="s6">=</span><span class="s3"> </span><span class="s7">320</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span></span><span class="s6">var</span><span class="s3"> height<span class="Apple-converted-space">  </span></span><span class="s6">=</span><span class="s3"> video.videoHeight </span><span class="s6">/</span><span class="s3"> (video.videoWidth </span><span class="s6">/</span><span class="s3"> width)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span></span><span class="s6">if</span><span class="s3"> (</span><span class="s7">isNaN</span><span class="s3">(height)) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>height </span><span class="s6">=</span><span class="s3"> width </span><span class="s6">/</span><span class="s3"> (</span><span class="s7">4</span><span class="s3"> </span><span class="s6">/</span><span class="s3"> </span><span class="s7">3</span><span class="s3">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span></span><span class="s7">setTimeout</span><span class="s3">(</span><span class="s6">function</span><span class="s3">(evt) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>video.</span><span class="s7">setAttribute</span><span class="s3">(</span><span class="s4">'width'</span><span class="s3">, width)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>video.</span><span class="s7">setAttribute</span><span class="s3">(</span><span class="s4">'height'</span><span class="s3">, height)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>canvas.</span><span class="s7">setAttribute</span><span class="s3">(</span><span class="s4">'width'</span><span class="s3">, width)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>canvas.</span><span class="s7">setAttribute</span><span class="s3">(</span><span class="s4">'height'</span><span class="s3">, height)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span></span><span class="s6">var</span><span class="s3"> ctx </span><span class="s6">=</span><span class="s3"> canvas.</span><span class="s7">getContext</span><span class="s3">(</span><span class="s4">'2d'</span><span class="s3">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>ctx.</span><span class="s5">drawImage</span><span class="s3">(video, </span><span class="s7">0</span><span class="s3">, </span><span class="s7">0</span><span class="s3">, width, height)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>canvas.</span><span class="s7">toBlob</span><span class="s3">(</span><span class="s6">function</span><span class="s3">(blob) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">              </span></span><span class="s5">uploadRecord</span><span class="s3">(id, blob)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>})</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>}, </span><span class="s7">2000</span><span class="s3">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span>}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span></span><span class="s6">function</span><span class="s3"> </span><span class="s5">onStreamReady</span><span class="s3">(id, stream) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>video.src </span><span class="s6">=</span><span class="s3"> </span><span class="s7">window</span><span class="s3">.</span><span class="s7">URL</span><span class="s3">.</span><span class="s5">createObjectURL</span><span class="s3">(stream)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>video.</span><span class="s7">addEventListener</span><span class="s3">(</span><span class="s4">'canplay'</span><span class="s3">, onCanPlay, </span><span class="s7">false</span><span class="s3">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>video.</span><span class="s7">play</span><span class="s3">()</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span>}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span></span><span class="s6">function</span><span class="s3"> </span><span class="s5">onVideoPlaying</span><span class="s3">(id, evt) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>canvas.</span><span class="s7">style</span><span class="s3">.</span><span class="s7">height</span><span class="s3"> </span><span class="s6">=</span><span class="s3"> video.clientHeight </span><span class="s6">+</span><span class="s3"> </span><span class="s4">'px'</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>canvas.</span><span class="s7">style</span><span class="s3">.</span><span class="s7">width</span><span class="s3"> </span><span class="s6">=</span><span class="s3"> video.clientWidth </span><span class="s6">+</span><span class="s3"> </span><span class="s4">'px'</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span></span><span class="s6">var</span><span class="s3"> ctx </span><span class="s6">=</span><span class="s3"> canvas.</span><span class="s7">getContext</span><span class="s3">(</span><span class="s4">'2d'</span><span class="s3">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>ctx.</span><span class="s5">drawImage</span><span class="s3">(video, </span><span class="s7">0</span><span class="s3">, </span><span class="s7">0</span><span class="s3">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>canvas.</span><span class="s7">toBlob</span><span class="s3">(</span><span class="s6">function</span><span class="s3">(blob) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span></span><span class="s5">uploadRecord</span><span class="s3">(id, blob)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>})</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span>}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span></span><span class="s6">function</span><span class="s3"> </span><span class="s5">setCameraStatus</span><span class="s3">(record, id) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>$.</span><span class="s5">getJSON</span><span class="s3">(</span><span class="s4">'node-red-camera/status'</span><span class="s3">, {status</span><span class="s6">:</span><span class="s3"> record, id</span><span class="s6">:</span><span class="s3"> id})</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>.</span><span class="s5">done</span><span class="s3">(</span><span class="s6">function</span><span class="s3"> () {})</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>.</span><span class="s5">fail</span><span class="s3">(</span><span class="s6">function</span><span class="s3"> (err) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">              </span></span><span class="s5">console</span><span class="s3">.</span><span class="s7">log</span><span class="s3">(err);</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>})</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>.</span><span class="s5">always</span><span class="s3">(</span><span class="s6">function</span><span class="s3"> () {});</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span>}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span></span><span class="s6">function</span><span class="s3"> </span><span class="s5">takeSnapshot</span><span class="s3">(id) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span></span><span class="s6">if</span><span class="s3">(</span><span class="s6">!</span><span class="s7">navigator</span><span class="s3">.getUserMedia) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p5"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s7">window</span><span class="s1">.</span><span class="s7">alert</span><span class="s1">(</span><span class="s3">'Your browser does not support the camera node'</span><span class="s1">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">              </span></span><span class="s6">return</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span></span><span class="s5">setCameraStatus</span><span class="s3">(</span><span class="s7">true</span><span class="s3">, id)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span></span><span class="s7">navigator</span><span class="s3">.</span><span class="s5">getUserMedia</span><span class="s3">(</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>{</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">              </span>video</span><span class="s6">:</span><span class="s3"> </span><span class="s7">true</span><span class="s3">,</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">              </span>audio</span><span class="s6">:</span><span class="s3"> </span><span class="s7">false</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>},</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span></span><span class="s6">function</span><span class="s3">(stream) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">              </span></span><span class="s5">onStreamReady</span><span class="s3">(id, stream)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>},</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span></span><span class="s6">function</span><span class="s3">(error) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">              </span></span><span class="s5">console</span><span class="s3">.</span><span class="s7">log</span><span class="s3">(error)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">          </span>)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span>}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span></span><span class="s6">function</span><span class="s3"> </span><span class="s5">uploadRecord</span><span class="s3">(id, blob) {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span></span><span class="s6">var</span><span class="s3"> xhr </span><span class="s6">=</span><span class="s3"> </span><span class="s6">new</span><span class="s3"> </span><span class="s5">XMLHttpRequest</span><span class="s3">()</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>xhr.</span><span class="s7">open</span><span class="s3">(</span><span class="s4">'POST'</span><span class="s3">, </span><span class="s4">'node-red-camera/'</span><span class="s3"> </span><span class="s6">+</span><span class="s3"> id, </span><span class="s7">true</span><span class="s3">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>xhr.</span><span class="s7">send</span><span class="s3">(blob)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span>}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><br>
+</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span></span><span class="s7">RED</span><span class="s3">.nodes.</span><span class="s5">registerType</span><span class="s3">(</span><span class="s4">'camera'</span><span class="s3">, {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>category</span><span class="s6">:</span><span class="s3"> </span><span class="s4">‘advanced-input'</span><span class="s3">,</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>defaults</span><span class="s6">:</span><span class="s3"> {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">                </span>name</span><span class="s6">:</span><span class="s3"> {value</span><span class="s6">:</span><span class="s3"> </span><span class="s4">''</span><span class="s3">}</span></p>
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">                </span>url</span><span class="s6">:</span><span class="s3"> {value</span><span class="s6">:</span><span class="s3"> </span><span class="s4">''</span><span class="s3">}</span></p>
+        <p class="p7"><span class="s3"></span><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>},</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>color</span><span class="s6">:</span><span class="s1"> </span><span class="s3">'rgb(215, 201, 194)'</span><span class="s1">,</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>inputs</span><span class="s6">:</span><span class="s3"> </span><span class="s7">1</span><span class="s3">,</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>outputs</span><span class="s6">:</span><span class="s3"> </span><span class="s7">1</span><span class="s3">,</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>icon</span><span class="s6">:</span><span class="s3"> </span><span class="s4">'camera.png'</span><span class="s3">,</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>paletteLabel</span><span class="s6">:</span><span class="s3"> </span><span class="s4">'camera'</span><span class="s3">,</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span></span><span class="s5">label</span><span class="s6">:</span><span class="s3"> </span><span class="s6">function</span><span class="s3">() {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">                </span></span><span class="s6">return</span><span class="s3"> </span><span class="s7">this</span><span class="s3">.</span><span class="s7">name</span><span class="s3"> </span><span class="s6">||</span><span class="s3"> </span><span class="s4">'camera'</span><span class="s3">;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>},</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span></span><span class="s5">labelStyle</span><span class="s6">:</span><span class="s3"> </span><span class="s6">function</span><span class="s3">() {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">                </span></span><span class="s6">return</span><span class="s3"> </span><span class="s7">this</span><span class="s3">.</span><span class="s7">name</span><span class="s3"> </span><span class="s6">?</span><span class="s3"> </span><span class="s4">'node_label_italic'</span><span class="s3"> </span><span class="s6">:</span><span class="s3"> </span><span class="s4">''</span><span class="s3">;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>},</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>button</span><span class="s6">:</span><span class="s3"> {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">                </span></span><span class="s5">onclick</span><span class="s6">:</span><span class="s3"> </span><span class="s6">function</span><span class="s3">(){</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">                    </span>id </span><span class="s6">=</span><span class="s3"> </span><span class="s7">this</span><span class="s3">.</span><span class="s7">id</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">                    </span></span><span class="s5">takeSnapshot</span><span class="s3">(id)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">                </span>}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">            </span>}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">        </span>});</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p3"><span class="s3"><span class="Apple-converted-space">    </span>})();</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p2"><span class="s3"><br>
+</span></p>
+      </td>
+      <td valign="top" class="td3">
+        <p class="p4"><span class="s1">&lt;/</span><span class="s3">script</span><span class="s1">&gt;</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

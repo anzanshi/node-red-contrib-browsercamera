@@ -1,0 +1,29 @@
+{
+  "name": "node-red-contrib-browsercamera",
+  "version": "1.0.0",
+  "description": "under construction",
+  "main": "camera.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "node-red": {
+    "node-red": {
+      "browser camera": "node.js"
+    },
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anzanshi/node-red-contrib-browsercamera.git"
+  },
+  "keywords": [
+    "camera",
+    "browser",
+    "input"
+  ],
+  "author": "anzanshi",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/anzanshi/node-red-contrib-browsercamera/issues"
+  },
+  "homepage": "https://github.com/anzanshi/node-red-contrib-browsercamera#readme"
+}
